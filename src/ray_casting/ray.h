@@ -1,13 +1,13 @@
 #pragma once
 
 #include <raylib.h>
+#include <raylib_ext/vector2.h>
 
 #include <cmath>
 #include <limits>
 #include <optional>
 
 #include "boundary.h"
-#include "raylib_ext/vector2.h"
 
 namespace stb {
 class Ray {

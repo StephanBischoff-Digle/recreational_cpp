@@ -68,9 +68,9 @@ int main() {
           }
         }
         if (closest) {
-          DrawLineEx(*closest, mouse, 3, {255, 255, 255, 1});
+          DrawLineEx(*closest, mouse, 3, {255, 255, 255, 3});
         } else {
-          r.col = {255, 255, 255, 1};
+          r.col = {255, 255, 255, 3};
           r.show(1000.f);
         }
       }
