@@ -1,3 +1,13 @@
+/**
+ * @file ray.h
+ * @author Stephan Bischoff
+ * @date 2020-04-08
+ * @brief File contains the Ray class
+ *
+ * The Ray class is part of the raycasting experiment.
+ * It is used to be emitted from a location into a direction and then check if
+ * it hits a boundary.
+ */
 #pragma once
 
 #include <raylib.h>
@@ -10,6 +20,11 @@
 #include "boundary.h"
 
 namespace stb {
+
+/**
+ * @brief A Ray is emmited from a direction into a direction and can be checked
+ * for collision.
+ */
 class Ray {
  public:
   Ray(float x, float y) : pos {x, y}, dir {1, 0}, col {ORANGE} {}
