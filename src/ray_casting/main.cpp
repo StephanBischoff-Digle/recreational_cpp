@@ -26,7 +26,7 @@ const struct {
 } screen;
 
 int main() {
-  InitWindow(screen.width, screen.height, "DevWindow");
+  InitWindow(screen.width, screen.height, "Raycasting Experiment");
   SetTargetFPS(60);
 
   std::vector<stb::Ray> rays;
