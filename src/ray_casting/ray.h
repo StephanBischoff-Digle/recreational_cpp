@@ -32,7 +32,9 @@ class Ray {
   void set_direction(const Vector2& direction) { dir = direction; }
   void look_at(const Vector2& target) { dir = normalize(target - pos); }
   void move_to(const Vector2& target) { pos = target; }
-  void show(float len) const { DrawLineEx(pos, pos + dir * len, 3, col); }
+  void show(float line_width, float len) const {
+    DrawLineEx(pos, pos + dir * len, line_width, col);
+  }
   std::optional<Vector2> cast(const Boundary& wall) const {
     const float x1 {wall.a.x};
     const float y1 {wall.a.y};

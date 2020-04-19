@@ -18,9 +18,6 @@ namespace stb {
  * @brief A Boundary is an object that can be hit by a ray.
  */
 class Boundary {
-  Vector2 a; /**< An endpoint of the boundary. */
-  Vector2 b; /**< An endpoint of the boundary. */
-
  public:
   /**
    * @brief Constructs the Boundary between the two arguments.
@@ -34,6 +31,9 @@ class Boundary {
    *
    * The Boundary is drawn as a black line 4 pixel wide.
    */
-  void show() const { DrawLineEx(a, b, 4, BLACK); }
+  void show(float line_width) const { DrawLineEx(a, b, line_width, BLACK); }
+
+  Vector2 a; /**< An endpoint of the boundary. */
+  Vector2 b; /**< An endpoint of the boundary. */
 };
 }  // namespace stb

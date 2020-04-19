@@ -9,12 +9,9 @@
 #include "boundary.h"
 #include "ray.h"
 
-constexpr float F_PI {static_cast<float>(M_PI)};
-
-float rad_to_deg(float rad) { return rad / F_PI * 180; }
-float deg_to_rad(float deg) { return deg / 180 * F_PI; }
 Vector2 vec_from_deg(float deg) {
-  return {std::cos(deg_to_rad(deg)), std::sin(deg_to_rad(deg))};
+  float rad = DEG2RAD * deg;
+  return {std::cos(rad), std::sin(rad)};
 }
 float project(float low, float x, float high) {
   return low + std::max(0.f, std::min(1.f, x)) * (high - low);
@@ -30,7 +27,7 @@ int main() {
   SetTargetFPS(60);
 
   std::vector<stb::Ray> rays;
-  for (float i {0.f}; i <= 360.f; i += 0.05f) {
+  for (float i {0.f}; i <= 360.f; i += 5.f) {
     stb::Ray r {1.f, 1.f};
     r.set_direction(vec_from_deg(i));
     rays.push_back(r);
@@ -45,8 +42,12 @@ int main() {
   while (!WindowShouldClose()) {
     BeginDrawing();
     {
-      ClearBackground(BLACK);
+      ClearBackground(WHITE);
       auto mouse = GetMousePosition();
+
+      for (const auto& wall : walls) {
+        wall.show(2);
+      }
 
       for (stb::Ray& r : rays) {
         r.move_to(mouse);
@@ -68,15 +69,12 @@ int main() {
           }
         }
         if (closest) {
-          DrawLineEx(*closest, mouse, 3, {255, 255, 255, 3});
+          DrawLineEx(*closest, mouse, 1, {54, 163, 217, 255});
+          DrawCircleV(*closest, 4, {184, 204, 82, 255});
         } else {
-          r.col = {255, 255, 255, 3};
-          r.show(1000.f);
+          r.col = {231, 197, 71, 255};
+          r.show(1, 1000.f);
         }
-      }
-
-      for (const auto& wall : walls) {
-        wall.show();
       }
 
       DrawFPS(10, 10);
