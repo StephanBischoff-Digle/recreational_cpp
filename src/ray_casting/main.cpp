@@ -52,7 +52,7 @@ int main() {
       for (stb::Ray& r : rays) {
         r.move_to(mouse);
 
-        std::optional<Vector2> closest {std::nullopt};
+        std::optional<Vector2> closest {};
         float closest_dist {std::numeric_limits<float>::infinity()};
         for (const auto& wall : walls) {
           if (auto hit {r.cast(wall)}) {
