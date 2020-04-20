@@ -75,14 +75,15 @@ class Ray {
     const float y4 {pos.y + dir.y};
 
     const float den {(x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4)};
-    if (std::fabs(den) <= std::numeric_limits<float>::epsilon()) return {};
+    if (std::fabs(den) <= std::numeric_limits<float>::epsilon())
+      return {std::nullopt};
 
     const float t {((x1 - x3) * (y3 - y4) - (y1 - y3) * (x3 - x4)) / den};
     const float u {-((x1 - x2) * (y1 - y3) - (y1 - y2) * (x1 - x3)) / den};
 
     if (t > 0.f && t < 1.f && u > 0.f)
-      return {x1 + t * (x2 - x1), y1 + t * (y2 - y1)};
-    return {}
+      return {Vector2 {x1 + t * (x2 - x1), y1 + t * (y2 - y1)}};
+    return {std::nullopt};
   }
 
   Vector2 pos;
