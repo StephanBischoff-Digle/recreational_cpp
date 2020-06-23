@@ -1,6 +1,7 @@
-build/
+cmake-build-debug/
 .ccls-cache/
 .clang
 .clangd/
+.idea/
 compile_commands.json
 

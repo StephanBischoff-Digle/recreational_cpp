@@ -1,18 +1,18 @@
 function(set_project_warnings project_name)
-  option(WARNINGS_AS_ERRORS "Treat compiler warnings as errors" TRUE)
+  option(WARNINGS_AS_ERRORS "Treat compiler warnings as errors" FALSE)
 
   set(CLANG_WARNINGS
       -Wall
       -Wextra
       -Wshadow
       -Wnon-virtual-dtor
-      -Wold-style-cast
+      #-Wold-style-cast
       -Wcast-align
       -Wunused
       -Woverloaded-virtual
       -Wpedantic
-      -Wconversion
-      -Wsign-conversion
+      #-Wconversion
+      #-Wsign-conversion
       -Wnull-dereference
       -Wdouble-promotion
       -Wformat=2)
@@ -22,7 +22,9 @@ function(set_project_warnings project_name)
   endif()
 
   set(GCC_WARNINGS ${CLANG_WARNINGS} -Wmisleading-indentation -Wduplicated-cond
-                   -Wlogical-op -Wuseless-cast)
+                   -Wlogical-op
+          #-Wuseless-cast
+          )
 
   if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     set(PROJECT_WARNINGS ${CLANG_WARNINGS})
